@@ -1,26 +1,28 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import GameText from './GameText/GameText';
+import GameInputField from './GameInputField/GameInputField'
 
-class Chapter1 extends Component{
-    constructor(props){
+class Chapter1 extends Component {
+    constructor(props) {
         super(props)
-        this.state={
-            stageInChapter:0,
-            name:''
+        this.state = {
+            stageInChapter: 0,
         }
     }
-    nameHandleClick=()=>{
-        this.props.updatePlayer("name", this.state.name)
-    }
-    handleNameChange=(e)=>{
-        this.setState({name:e.target.value})
-    }
-    render(){
-        return (
-            <div className="Chapter1">
-                <h1 className="game-text">What is your name?</h1>
+    handleGameInputFieldClick = (dataToChange='', newData='', movingForward=1) => {
+        if(dataToChange)  this.props.updatePlayer(dataToChange, newData)
+        this.setState((state)=>{return{stageInChapter: state.stageInChapter + movingForward}})
 
-                    <input className="name-form__input-field" type='text' ref="nameInput" onChange={this.handleNameChange}/>
-                    <button className="name-form__submit-button" onClick={this.nameHandleClick}>OK</button>
+    }
+    handleDataChange = (dataToChange,e) => {
+        this.setState({ [dataToChange]: e.target.value })
+    }
+    render() {
+        console.log(this.state.stageInChapter)
+    return(
+            <div className = "Chapter1" >
+            <GameText stageInChapter={this.state.stageInChapter} />
+            <GameInputField stageInChapter={this.state.stageInChapter} handleChange={this.handleDataChange} handleClick={this.handleGameInputFieldClick}/>
 
             </div>
         )

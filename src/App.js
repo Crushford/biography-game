@@ -19,8 +19,11 @@ class App extends Component {
   }
 
   updatePlayer(key,data){
-    console.log('updated')
-    this.setState({player:{[key]:data}})
+    console.log(key,data)
+    if(key && data){
+      this.setState((prevState)=>{
+        prevState.player[key] = data;
+      })}
   } 
 
   changeDisplay(display){
@@ -29,6 +32,7 @@ class App extends Component {
   
   
   render(){
+    console.log(this.state.player)
     let toDisplay= '';
     switch(this.state.currentlyDisplaying){
       case 'Game':
