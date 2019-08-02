@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       currentlyDisplaying:'Start',
       player:{
-        name:'',
+        name:'poop',
         birthplace:''
       }
     }
